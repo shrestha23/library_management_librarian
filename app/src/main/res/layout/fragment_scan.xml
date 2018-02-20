@@ -20,7 +20,7 @@
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome, "
+                android:text="@string/welcome_placeholder"
                 android:textColor="@color/colorLight"
                 android:textSize="30sp" />
 
@@ -60,17 +60,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:hint="Search with ISBN" />
+                android:inputType="number"
+                android:hint="@string/search_with_isbn" />
         </android.support.design.widget.TextInputLayout>
 
 
         <android.support.v7.widget.AppCompatButton
+            android:id="@+id/search_books"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10pt"
             android:background="@color/colorPrimary"
-            android:text="Search"
+            android:text="@string/search"
             android:textColor="@color/colorLight"
             android:textSize="20sp" />
 

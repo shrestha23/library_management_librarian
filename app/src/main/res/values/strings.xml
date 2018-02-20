@@ -28,4 +28,8 @@
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     </string>
+    <string name="title_book_details">Book Details</string>
+    <string name="search_with_isbn">Search with ISBN</string>
+    <string name="search">Search</string>
+    <string name="welcome_placeholder">Welcome,</string>
 </resources>
