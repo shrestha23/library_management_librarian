@@ -2,8 +2,6 @@ sudo: required
 
 language: android
 jdk: oraclejdk8
--before_install:
-  - chmod +x gradlew
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -22,17 +20,18 @@ env:
 
 android:
   components:
-  - tools
-  - tools # Running this twice get's the latest build tools (https://github.com/codepath/android_guides/wiki/Setting-up-Travis-CI)
-  - platform-tools
-  - android-${ANDROID_API}
-  - build-tools-${ANDROID_BUILD_TOOLS}
-  - extra
-  - extra-google-google_play_services
-  - extra-google-m2repository
-  - extra-android-m2repository
-  - addon-google_apis-google-26
-
+    - tools
+    - tools # Running this twice get's the latest build tools (https://github.com/codepath/android_guides/wiki/Setting-up-Travis-CI)
+    - platform-tools
+    - android-${ANDROID_API}
+    - build-tools-${ANDROID_BUILD_TOOLS}
+    - extra
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-26
+before_script:
+  - chmod +x gradlew
 script:
   - ./gradlew clean test build
 after_success:
