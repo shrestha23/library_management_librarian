@@ -87,7 +87,21 @@ public class MainActivity extends AppCompatActivity
         //TODO: Add proper navigation
         switch (id) {
             case R.id.nav_scan:
-                Toast.makeText(this, "Clicked Scan", Toast.LENGTH_SHORT).show();
+                //TODO: Add fragment data handling here
+                scanFragment = new ScanFragment();
+                fragmentTransaction.add(R.id.fragment_container, scanFragment);
+                break;
+            case R.id.nav_coming_dues:
+                Toast.makeText(this, "Clicked 'Coming Dues'", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_all_dues:
+                Toast.makeText(this, "Clicked 'All Dues'", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_edit_book:
+                Toast.makeText(this, "Clicked 'Edit Books'", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_add_book:
+                Toast.makeText(this, "Clicked 'Add Book'", Toast.LENGTH_SHORT).show();
                 break;
         }
 

@@ -3,18 +3,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/book_search_field"
+    <LinearLayout
+        android:id="@+id/desc_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Search with ISBN" />
+        android:layout_height="240dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/book_search_field"
-        android:layout_centerHorizontal="true"
-        android:text="Search" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome, "
+                android:textColor="@color/colorLight"
+                android:textSize="30sp" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="John Doe"
+                android:textColor="@color/colorLight"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/welcome_text"
+            android:textColor="@color/colorLight"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/desc_text"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/book_search_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:hint="Search with ISBN" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10pt"
+            android:background="@color/colorPrimary"
+            android:text="Search"
+            android:textColor="@color/colorLight"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
 
 </RelativeLayout>
