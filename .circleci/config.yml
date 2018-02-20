@@ -19,7 +19,10 @@ jobs:
     environment:
       # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx3200m
-      TERM: dumb
+      TERM:
+      ANDROID_TARGET: android-23
+      ADB_INSTALL_TIMEOUT: 12
+      - sudo ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
 
     steps:
       - checkout
@@ -40,6 +43,3 @@ jobs:
 
       # run tests!
       - run: gradle test
-
-
-
