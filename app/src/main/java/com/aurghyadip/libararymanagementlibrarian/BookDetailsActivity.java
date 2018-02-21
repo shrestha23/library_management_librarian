@@ -2,20 +2,14 @@ package com.aurghyadip.libararymanagementlibrarian;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.support.v7.widget.Toolbar;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 //TODO: Add dynamic data searching from fragment.
 
@@ -23,7 +17,8 @@ import java.util.ArrayList;
 public class BookDetailsActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference mRef;
-    ListView listView;
+
+    Toolbar toolbar;
 
     TextView authorView;
     TextView titleView;
@@ -35,6 +30,9 @@ public class BookDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_details);
+
+        toolbar = findViewById(R.id.toolbar_book_details);
+        setSupportActionBar(toolbar);
 
         authorView = findViewById(R.id.book_author);
         titleView = findViewById(R.id.book_title);
