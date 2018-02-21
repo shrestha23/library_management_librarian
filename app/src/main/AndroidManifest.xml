@@ -30,6 +30,9 @@
         <activity
             android:name=".BookDetailsActivity"
             android:label="@string/title_book_details" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b6498ddd91f0155ab9597f4ed7da55959bbdc3b0" />
     </application>
 
 </manifest>

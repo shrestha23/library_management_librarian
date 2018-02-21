@@ -24,7 +24,7 @@ public class BookDetailsActivity extends AppCompatActivity {
     TextView titleView;
     TextView descriptionView;
 
-    public String isbn = "9780091906351";
+    private String isbn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,8 @@ public class BookDetailsActivity extends AppCompatActivity {
         authorView = findViewById(R.id.book_author);
         titleView = findViewById(R.id.book_title);
         descriptionView = findViewById(R.id.book_description);
+
+        isbn = getIntent().getStringExtra("isbn");
 
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference("Books");
