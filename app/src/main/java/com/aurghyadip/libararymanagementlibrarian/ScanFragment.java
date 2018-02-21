@@ -2,6 +2,7 @@ package com.aurghyadip.libararymanagementlibrarian;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 
 /**
  * Created by Aurghya on 20-02-2018.
@@ -22,6 +26,8 @@ public class ScanFragment extends Fragment {
     Button scanBooks;
     EditText isbn;
 
+    AwesomeValidation awesomeValidation;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,15 +37,28 @@ public class ScanFragment extends Fragment {
 
         scanBooks = rootView.findViewById(R.id.search_books);
         isbn = rootView.findViewById(R.id.book_search_field);
+
+        //Awesome validation block
+        awesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
+        awesomeValidation.addValidation(isbn, "^(97(8|9))?\\d{9}(\\d|X)$", getString(R.string.isbn_error));
+
+
+        return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         scanBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), BookDetailsActivity.class);
-                intent.putExtra("isbn", isbn.getText().toString());
-                startActivity(intent);
+                if (awesomeValidation.validate()) {
+                    Intent intent = new Intent(getActivity(), BookDetailsActivity.class);
+                    intent.putExtra("isbn", isbn.getText().toString());
+                    startActivity(intent);
+                }
             }
         });
-
-        return rootView;
     }
 }

@@ -53,6 +53,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
         transitive = true;
     }
+    implementation 'com.basgeekball:awesome-validation:4.1'
 }
 
 
