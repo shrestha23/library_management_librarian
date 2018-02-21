@@ -49,6 +49,8 @@
             android:id="@+id/book_description"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:maxLines="5"
+            android:ellipsize="end"
             android:textSize="16sp"
             style="@style/Base.TextAppearance.AppCompat.Body1"/>
         <TextView
@@ -59,6 +61,5 @@
             android:textSize="16sp"
             style="@style/Base.TextAppearance.AppCompat.Body1" />
     </LinearLayout>
-
 
 </LinearLayout>
