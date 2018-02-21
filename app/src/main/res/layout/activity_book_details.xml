@@ -39,7 +39,7 @@
 
         <TextView
             android:id="@+id/book_author"
-            style="@style/TextAppearance.AppCompat.Body1"
+            style="@style/TextAppearance.AppCompat.Body2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -50,7 +50,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            style="@style/Base.TextAppearance.AppCompat.Body2"/>
+            style="@style/Base.TextAppearance.AppCompat.Body1"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/book_copies"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            style="@style/Base.TextAppearance.AppCompat.Body1" />
     </LinearLayout>
 
 
