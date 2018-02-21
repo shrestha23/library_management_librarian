@@ -83,24 +83,30 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        //TODO: Add proper navigation
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        ScanFragment sf = new ScanFragment();
+        ComingDuesFragment comingDuesFragment = new ComingDuesFragment();
+        AllDuesFragment allDuesFragment = new AllDuesFragment();
+        EditBookFragment editBookFragment = new EditBookFragment();
+        AddBookFragment addBookFragment = new AddBookFragment();
+
         switch (id) {
             case R.id.nav_scan:
-                //TODO: Add fragment data handling here
-                scanFragment = new ScanFragment();
-                fragmentTransaction.add(R.id.fragment_container, scanFragment);
+                ft.replace(R.id.fragment_container, sf).addToBackStack(null).commit();
                 break;
             case R.id.nav_coming_dues:
-                Toast.makeText(this, "Clicked 'Coming Dues'", Toast.LENGTH_SHORT).show();
+                ft.replace(R.id.fragment_container, comingDuesFragment).addToBackStack(null).commit();
                 break;
             case R.id.nav_all_dues:
-                Toast.makeText(this, "Clicked 'All Dues'", Toast.LENGTH_SHORT).show();
+                ft.replace(R.id.fragment_container, allDuesFragment).addToBackStack(null).commit();
                 break;
             case R.id.nav_edit_book:
-                Toast.makeText(this, "Clicked 'Edit Books'", Toast.LENGTH_SHORT).show();
+                ft.replace(R.id.fragment_container, editBookFragment).addToBackStack(null).commit();
                 break;
             case R.id.nav_add_book:
-                Toast.makeText(this, "Clicked 'Add Book'", Toast.LENGTH_SHORT).show();
+                ft.replace(R.id.fragment_container, addBookFragment).addToBackStack(null).commit();
                 break;
         }
 

@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -42,15 +43,17 @@ public class BookDetailsActivity extends AppCompatActivity {
         isbn = getIntent().getStringExtra("isbn");
 
         database = FirebaseDatabase.getInstance();
-        mRef = database.getReference("Books");
+        mRef = database.getReference("Books"+"/"+isbn);
 
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String title = (String) dataSnapshot.child(isbn).child("title").getValue();
-                String description = (String) dataSnapshot.child(isbn).child("description").getValue();
-                String author = (String) dataSnapshot.child(isbn).child("author").getValue();
-                @Nullable Long copies = (Long) dataSnapshot.child(isbn).child("copies").getValue();
+                String title = (String) dataSnapshot.child("title").getValue();
+                String description = (String) dataSnapshot.child("description").getValue();
+                String author = (String) dataSnapshot.child("author").getValue();
+                Long copies = (Long) dataSnapshot.child("copies").getValue();
+
+                Log.d("TAG", "onDataChange: "+ copies);
 
                 titleView.setText(title);
                 authorView.setText(author);
@@ -58,7 +61,7 @@ public class BookDetailsActivity extends AppCompatActivity {
                 if (copies == null) {
                     copiesView.setText(R.string.no_copies_available);
                 } else {
-                    copiesView.append(R.string.copies_available + Long.toString(copies));
+                    copiesView.append(Long.toString(copies));
                 }
             }
 
