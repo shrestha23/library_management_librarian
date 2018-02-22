@@ -1,6 +1,5 @@
 package com.aurghyadip.libararymanagementlibrarian;
 
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -25,8 +24,6 @@ public class BookDetailsActivity extends AppCompatActivity {
     TextView descriptionView;
     TextView copiesView;
 
-    private String isbn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,29 +37,22 @@ public class BookDetailsActivity extends AppCompatActivity {
         descriptionView = findViewById(R.id.book_description);
         copiesView = findViewById(R.id.book_copies);
 
-        isbn = getIntent().getStringExtra("isbn");
+        String isbn = getIntent().getStringExtra("isbn");
 
         database = FirebaseDatabase.getInstance();
-        mRef = database.getReference("Books"+"/"+isbn);
+        mRef = database.getReference("Books" + "/" + isbn);
 
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String title = (String) dataSnapshot.child("title").getValue();
-                String description = (String) dataSnapshot.child("description").getValue();
-                String author = (String) dataSnapshot.child("author").getValue();
-                Long copies = (Long) dataSnapshot.child("copies").getValue();
 
-                Log.d("TAG", "onDataChange: "+ copies);
+                Books book = dataSnapshot.getValue(Books.class);
+                Log.d("TAG", "onDataChange: " + book.getCopies());
 
-                titleView.setText(title);
-                authorView.setText(author);
-                descriptionView.setText(description);
-                if (copies == null) {
-                    copiesView.setText("0");
-                } else {
-                    copiesView.setText(Long.toString(copies));
-                }
+                titleView.setText(book.title);
+                authorView.setText(book.author);
+                descriptionView.setText(book.description);
+                copiesView.setText(book.getCopies());
             }
 
             @Override

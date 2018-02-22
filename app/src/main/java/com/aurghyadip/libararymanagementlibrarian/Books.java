@@ -1,47 +1,36 @@
 package com.aurghyadip.libararymanagementlibrarian;
 
-/**
- * Created by Aurghya on 20-02-2018.
- */
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.IgnoreExtraProperties;
 
+
+@IgnoreExtraProperties
 public class Books {
-    private String author;
-    private String description;
-    private String title;
-    private int copies;
+
+    public String author;
+    public String description;
+    public String title;
+    private Long copies;
 
     public Books() {
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
+    public Books(String title, String author, String description, Long copies) {
         this.title = title;
-    }
-
-    public int getCopies() {
-        return copies;
-    }
-
-    public void setCopies(int copies) {
+        this.author = author;
+        this.description = description;
         this.copies = copies;
+    }
+
+    String getCopies() {
+        return Long.toString(this.copies);
+    }
+
+    public void addNewBook(String isbn, String title, String author, String description, Long copies) {
+        DatabaseReference databaseReference;
+        Books book = new Books(title, author, description, copies);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Books");
+        databaseReference.child(isbn).setValue(book);
     }
 }
