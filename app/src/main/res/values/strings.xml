@@ -45,4 +45,5 @@
     <string name="add_book_details_btn_text">Add Book Details</string>
     <string name="copies_edit_hint">Number of Copies</string>
     <string name="edit_book_btn">Edit Book Details</string>
+    <string name="no_books_available_hint">NO BOOKS AVAILABLE</string>
 </resources>

@@ -45,13 +45,15 @@ public class BookDetailsActivity extends AppCompatActivity {
         isbn = getIntent().getStringExtra("isbn");
 
         database = FirebaseDatabase.getInstance();
-        //TODO: Check if the ISBN exists in the database.
         mRef = database.getReference("Books");
 
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //TODO: Solve the NPE, remove hack
                 if (dataSnapshot.hasChild(isbn)) {
+                    // Dirty hack for solving the NPE Temporarily
+                    // Map the values to a class
                     String title = dataSnapshot.child(isbn).child("title").getValue(String.class);
                     String description = dataSnapshot.child(isbn).child("description").getValue(String.class);
                     String author = dataSnapshot.child(isbn).child("author").getValue(String.class);

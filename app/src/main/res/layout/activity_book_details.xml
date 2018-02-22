@@ -124,7 +124,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="NO BOOKS AVAILABLE"/>
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="@string/no_books_available_hint"/>
     </LinearLayout>
 
 </LinearLayout>
