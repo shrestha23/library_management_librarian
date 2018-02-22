@@ -40,6 +40,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         String isbn = getIntent().getStringExtra("isbn");
 
         database = FirebaseDatabase.getInstance();
+        //TODO: Check if the ISBN exists in the database.
         mRef = database.getReference("Books" + "/" + isbn);
 
         mRef.addValueEventListener(new ValueEventListener() {

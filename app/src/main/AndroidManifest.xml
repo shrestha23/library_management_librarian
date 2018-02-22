@@ -15,7 +15,8 @@
 
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/FlatUI">
+            android:theme="@style/FlatUI"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -24,7 +25,9 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity
             android:name=".BookDetailsActivity"
