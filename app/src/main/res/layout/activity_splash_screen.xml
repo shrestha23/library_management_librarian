@@ -10,7 +10,7 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/library_logo"
+        android:src="@mipmap/ic_launcher_foreground"
         android:contentDescription="@string/logo_image_description" />
 
     <TextView

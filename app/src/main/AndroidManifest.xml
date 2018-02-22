@@ -4,9 +4,6 @@
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +15,8 @@
 
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/FlatUI">
+            android:theme="@style/FlatUI"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,12 +25,16 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme">
-
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity
             android:name=".BookDetailsActivity"
             android:label="@string/title_book_details" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b6498ddd91f0155ab9597f4ed7da55959bbdc3b0" />
     </application>
 
 </manifest>

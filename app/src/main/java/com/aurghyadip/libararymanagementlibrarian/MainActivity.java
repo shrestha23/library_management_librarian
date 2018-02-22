@@ -1,11 +1,8 @@
 package com.aurghyadip.libararymanagementlibrarian;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import com.google.firebase.crash.FirebaseCrash;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +24,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FirebaseCrash.log("MainActivity Created");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -84,24 +83,30 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        //TODO: Add proper navigation
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        ScanFragment sf = new ScanFragment();
+        ComingDuesFragment comingDuesFragment = new ComingDuesFragment();
+        AllDuesFragment allDuesFragment = new AllDuesFragment();
+        EditBookFragment editBookFragment = new EditBookFragment();
+        AddBookFragment addBookFragment = new AddBookFragment();
+
         switch (id) {
             case R.id.nav_scan:
-                //TODO: Add fragment data handling here
-                scanFragment = new ScanFragment();
-                fragmentTransaction.add(R.id.fragment_container, scanFragment);
+                ft.replace(R.id.fragment_container, sf).addToBackStack(null).commit();
                 break;
             case R.id.nav_coming_dues:
-                Toast.makeText(this, "Clicked 'Coming Dues'", Toast.LENGTH_SHORT).show();
+                ft.replace(R.id.fragment_container, comingDuesFragment).addToBackStack(null).commit();
                 break;
             case R.id.nav_all_dues:
-                Toast.makeText(this, "Clicked 'All Dues'", Toast.LENGTH_SHORT).show();
+                ft.replace(R.id.fragment_container, allDuesFragment).addToBackStack(null).commit();
                 break;
             case R.id.nav_edit_book:
-                Toast.makeText(this, "Clicked 'Edit Books'", Toast.LENGTH_SHORT).show();
+                ft.replace(R.id.fragment_container, editBookFragment).addToBackStack(null).commit();
                 break;
             case R.id.nav_add_book:
-                Toast.makeText(this, "Clicked 'Add Book'", Toast.LENGTH_SHORT).show();
+                ft.replace(R.id.fragment_container, addBookFragment).addToBackStack(null).commit();
                 break;
         }
 
