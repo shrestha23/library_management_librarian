@@ -4,7 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,6 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 public class BookDetailsActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference mRef;
+
+    String isbn;
 
     Toolbar toolbar;
 
@@ -37,28 +42,43 @@ public class BookDetailsActivity extends AppCompatActivity {
         descriptionView = findViewById(R.id.book_description);
         copiesView = findViewById(R.id.book_copies);
 
-        String isbn = getIntent().getStringExtra("isbn");
+        isbn = getIntent().getStringExtra("isbn");
 
         database = FirebaseDatabase.getInstance();
         //TODO: Check if the ISBN exists in the database.
-        mRef = database.getReference("Books" + "/" + isbn);
+        mRef = database.getReference("Books");
 
-        mRef.addValueEventListener(new ValueEventListener() {
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(isbn)) {
+                    String title = dataSnapshot.child(isbn).child("title").getValue(String.class);
+                    String description = dataSnapshot.child(isbn).child("description").getValue(String.class);
+                    String author = dataSnapshot.child(isbn).child("author").getValue(String.class);
+                    Long copies = dataSnapshot.child(isbn).child("copies").getValue(Long.class);
 
-                Books book = dataSnapshot.getValue(Books.class);
-                Log.d("TAG", "onDataChange: " + book.getCopies());
+                    titleView.setText(title);
+                    authorView.setText(author);
+                    descriptionView.setText(description);
+                    copiesView.setText(String.valueOf(copies));
+                } else {
+                    LinearLayout hasBookDetails = findViewById(R.id.has_book_details_layout);
+                    LinearLayout doesNotHaveBookDetails = findViewById(R.id.does_not_have_book_details);
 
-                titleView.setText(book.title);
-                authorView.setText(book.author);
-                descriptionView.setText(book.description);
-                copiesView.setText(book.getCopies());
+                    hasBookDetails.setVisibility(View.GONE);
+                    doesNotHaveBookDetails.setVisibility(View.VISIBLE);
+                }
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                // Getting Book failed, log a message
+                Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
+                // [START_EXCLUDE]
+                Toast.makeText(BookDetailsActivity.this, "Failed to load book.",
+                        Toast.LENGTH_SHORT).show();
+                // [END_EXCLUDE]
             }
         });
     }
