@@ -44,23 +44,72 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="16sp" />
+
         <TextView
-            android:layout_width="match_parent"
             android:id="@+id/book_description"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:maxLines="5"
-            android:ellipsize="end"
-            android:textSize="16sp"
-            style="@style/Base.TextAppearance.AppCompat.Body1"/>
-        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
-            android:id="@+id/book_copies"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textSize="16sp"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/book_copies"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
             android:text="@string/copies_available"
-            style="@style/Base.TextAppearance.AppCompat.Body1" />
+            android:textAllCaps="true"
+            android:textSize="16sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/rent_book_btn"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="@string/rent_book_btn_text"
+                android:textColor="@color/colorLight"
+                android:textStyle="bold"
+                android:background="@color/colorPrimaryDark"
+                android:layout_margin="8dp" />
+
+            <Button
+                android:id="@+id/deposit_book_btn"
+                android:layout_width="160dp"
+                android:background="@color/colorAccent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorLight"
+                android:textStyle="bold"
+                android:text="@string/deposit_book_btn_text"
+                android:layout_margin="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
 
 </LinearLayout>

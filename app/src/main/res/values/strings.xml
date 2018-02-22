@@ -33,6 +33,8 @@
     <string name="search">Search</string>
     <string name="welcome_placeholder">Welcome,</string>
     <string name="isbn_error">Must be a Valid ISBN13 Number</string>
-    <string name="copies_available">Copies Available :</string>
+    <string name="copies_available">Copies Available</string>
     <string name="no_copies_available">No books in library</string>
+    <string name="rent_book_btn_text">Rent Book</string>
+    <string name="deposit_book_btn_text">Deposit Book</string>
 </resources>

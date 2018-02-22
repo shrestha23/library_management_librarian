@@ -59,9 +59,9 @@ public class BookDetailsActivity extends AppCompatActivity {
                 authorView.setText(author);
                 descriptionView.setText(description);
                 if (copies == null) {
-                    copiesView.setText(R.string.no_copies_available);
+                    copiesView.setText("0");
                 } else {
-                    copiesView.append(Long.toString(copies));
+                    copiesView.setText(Long.toString(copies));
                 }
             }
 
