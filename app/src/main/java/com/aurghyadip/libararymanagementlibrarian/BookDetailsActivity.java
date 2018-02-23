@@ -46,6 +46,11 @@ public class BookDetailsActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference("Books");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
