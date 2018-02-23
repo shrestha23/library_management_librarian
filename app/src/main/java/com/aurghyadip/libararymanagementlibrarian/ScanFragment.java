@@ -25,7 +25,6 @@ public class ScanFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Search for Books");
 
         View rootView = inflater.inflate(R.layout.fragment_scan, container, false);
         scanBooks = rootView.findViewById(R.id.search_books);
