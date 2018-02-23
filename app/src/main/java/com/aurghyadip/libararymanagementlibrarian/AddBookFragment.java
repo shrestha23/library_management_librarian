@@ -47,6 +47,7 @@ public class AddBookFragment extends Fragment {
 
         // Validating the data through AwesomeValidation Library, same as ScanFragment
         awesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
+        //TODO: Extract string resource
         awesomeValidation.addValidation(isbn, "^(97(8|9))?\\d{9}(\\d|X)$", "ISBN Error");
         awesomeValidation.addValidation(bookTitle, RegexTemplate.NOT_EMPTY, "Title should not be empty");
         awesomeValidation.addValidation(bookAuthor, RegexTemplate.NOT_EMPTY, "Author should not be empty");
@@ -61,6 +62,8 @@ public class AddBookFragment extends Fragment {
         addBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // TODO: Add database reference here and then push the values to database
+                // TODO: Before pushing, check if the value already exists.
                 awesomeValidation.validate();
             }
         });
