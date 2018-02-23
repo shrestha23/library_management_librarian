@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 
 public class AddBookFragment extends Fragment {
@@ -36,14 +37,22 @@ public class AddBookFragment extends Fragment {
         bookCopies = rootView.findViewById(R.id.add_copies);
         addBookBtn = rootView.findViewById(R.id.add_book_btn);
 
+
+
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         // Validating the data through AwesomeValidation Library, same as ScanFragment
-        awesomeValidation.addValidation(isbn, "^(97(8|9))?\\d{9}(\\d|X)$", getString(R.string.isbn_error));
+        awesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
+        awesomeValidation.addValidation(isbn, "^(97(8|9))?\\d{9}(\\d|X)$", "ISBN Error");
         awesomeValidation.addValidation(bookTitle, RegexTemplate.NOT_EMPTY, "Title should not be empty");
         awesomeValidation.addValidation(bookAuthor, RegexTemplate.NOT_EMPTY, "Author should not be empty");
         awesomeValidation.addValidation(bookDescription, RegexTemplate.NOT_EMPTY, "Description should not be empty");
         awesomeValidation.addValidation(bookCopies, RegexTemplate.NOT_EMPTY, "Copies should not be empty, enter at least 1");
-
-        return rootView;
     }
 
     @Override
@@ -53,10 +62,7 @@ public class AddBookFragment extends Fragment {
         addBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(awesomeValidation.validate()) {
-                    // TODO: Add the things to database
-                    // TODO: Finish and move to main activity
-                }
+                awesomeValidation.validate();
             }
         });
     }
