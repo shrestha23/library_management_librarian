@@ -38,7 +38,6 @@ public class AddBookFragment extends Fragment {
         addBookBtn = rootView.findViewById(R.id.add_book_btn);
 
 
-
         return rootView;
     }
 

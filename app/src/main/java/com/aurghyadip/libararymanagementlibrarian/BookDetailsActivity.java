@@ -50,7 +50,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //TODO: Solve the NPE, remove hack
+                //TODO: Integrate Google Books API to fetch data
                 if (dataSnapshot.hasChild(isbn)) {
                     // Dirty hack for solving the NPE Temporarily
                     // Map the values to a class
