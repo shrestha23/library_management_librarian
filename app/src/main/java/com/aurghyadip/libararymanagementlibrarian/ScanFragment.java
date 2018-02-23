@@ -13,10 +13,6 @@ import android.widget.Button;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 
-/**
- * Created by Aurghya on 20-02-2018.
- */
-
 //TODO: Add data handling and Barcode Scanner
 
 public class ScanFragment extends Fragment {
@@ -32,7 +28,6 @@ public class ScanFragment extends Fragment {
         getActivity().setTitle("Search for Books");
 
         View rootView = inflater.inflate(R.layout.fragment_scan, container, false);
-
         scanBooks = rootView.findViewById(R.id.search_books);
         isbn = rootView.findViewById(R.id.book_search_field);
 
