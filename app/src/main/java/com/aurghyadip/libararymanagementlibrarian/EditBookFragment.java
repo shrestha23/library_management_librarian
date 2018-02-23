@@ -86,8 +86,6 @@ public class EditBookFragment extends Fragment {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.hasChild(isbnNumber)) {
-                                // Dirty hack for solving the NPE Temporarily
-                                // Map the values to a class
                                 Book book = dataSnapshot.child(isbnNumber).getValue(Book.class);
 
                                 if (book != null) {
