@@ -1,7 +1,6 @@
 package com.aurghyadip.libararymanagementlibrarian;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -89,15 +88,14 @@ public class EditBookFragment extends Fragment {
                             if (dataSnapshot.hasChild(isbnNumber)) {
                                 // Dirty hack for solving the NPE Temporarily
                                 // Map the values to a class
-                                String title = dataSnapshot.child(isbnNumber).child("title").getValue(String.class);
-                                String description = dataSnapshot.child(isbnNumber).child("description").getValue(String.class);
-                                String author = dataSnapshot.child(isbnNumber).child("author").getValue(String.class);
-                                Long copies = dataSnapshot.child(isbnNumber).child("copies").getValue(Long.class);
+                                Book book = dataSnapshot.child(isbnNumber).getValue(Book.class);
 
-                                bookTitle.setText(title);
-                                bookAuthor.setText(author);
-                                bookDescription.setText(description);
-                                bookCopies.setText(String.valueOf(copies));
+                                if (book != null) {
+                                    bookTitle.setText(book.getTitle());
+                                    bookAuthor.setText(book.getAuthor());
+                                    bookDescription.setText(book.getDescription());
+                                    bookCopies.setText(String.valueOf(book.getCopies()));
+                                }
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                 builder.setMessage("No books found with that ISBN in Database")
@@ -110,7 +108,7 @@ public class EditBookFragment extends Fragment {
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-
+                            Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
                         }
                     });
                 }
@@ -120,11 +118,14 @@ public class EditBookFragment extends Fragment {
         editBookDetailsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(awesomeValidationEditBook.validate()) {
-                    databaseReference.child(isbnNumber).child("title").setValue(bookTitle.getText().toString());
-                    databaseReference.child(isbnNumber).child("author").setValue(bookAuthor.getText().toString());
-                    databaseReference.child(isbnNumber).child("description").setValue(bookDescription.getText().toString());
-                    databaseReference.child(isbnNumber).child("copies").setValue(bookCopies.getText().toString());
+                if (awesomeValidationEditBook.validate()) {
+                    Book addBook = new Book(
+                            bookTitle.getText().toString(),
+                            bookAuthor.getText().toString(),
+                            bookDescription.getText().toString(),
+                            bookCopies.getText().toString()
+                    );
+                    databaseReference.child(isbnNumber).setValue(addBook);
                 }
                 // TODO: Destroy the fragment here and go back to previous fragment
             }

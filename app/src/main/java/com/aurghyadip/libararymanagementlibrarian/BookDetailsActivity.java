@@ -52,17 +52,14 @@ public class BookDetailsActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //TODO: Integrate Google Books API to fetch data
                 if (dataSnapshot.hasChild(isbn)) {
-                    // Dirty hack for solving the NPE Temporarily
-                    // Map the values to a class
-                    String title = dataSnapshot.child(isbn).child("title").getValue(String.class);
-                    String description = dataSnapshot.child(isbn).child("description").getValue(String.class);
-                    String author = dataSnapshot.child(isbn).child("author").getValue(String.class);
-                    Long copies = dataSnapshot.child(isbn).child("copies").getValue(Long.class);
+                    Book book = dataSnapshot.child(isbn).getValue(Book.class);
 
-                    titleView.setText(title);
-                    authorView.setText(author);
-                    descriptionView.setText(description);
-                    copiesView.setText(String.valueOf(copies));
+                    if (book != null) {
+                        titleView.setText(book.getTitle());
+                        authorView.setText(book.getAuthor());
+                        descriptionView.setText(book.getDescription());
+                        copiesView.setText(book.getCopies());
+                    }
                 } else {
                     LinearLayout hasBookDetails = findViewById(R.id.has_book_details_layout);
                     LinearLayout doesNotHaveBookDetails = findViewById(R.id.does_not_have_book_details);
@@ -75,12 +72,9 @@ public class BookDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Book failed, log a message
                 Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
-                // [START_EXCLUDE]
                 Toast.makeText(BookDetailsActivity.this, "Failed to load book.",
                         Toast.LENGTH_SHORT).show();
-                // [END_EXCLUDE]
             }
         });
     }
