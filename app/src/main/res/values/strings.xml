@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Libarary Management System</string>
+    <string name="app_name">Library Management System</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="logo_image_description">Logo Image</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">LMS - Librarian View</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
