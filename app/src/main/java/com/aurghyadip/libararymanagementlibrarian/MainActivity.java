@@ -11,7 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.crash.FirebaseCrash;
 
 public class MainActivity extends AppCompatActivity
@@ -19,6 +23,8 @@ public class MainActivity extends AppCompatActivity
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     ScanFragment scanFragment;
+    private FirebaseAuth mAuth;
+    View navHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         FirebaseCrash.log("MainActivity Created");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mAuth = FirebaseAuth.getInstance();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -36,6 +43,13 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        if(mAuth.getCurrentUser() != null) {
+            navHeader = navigationView.getHeaderView(0);
+            // navHeader = navigationView.inflateHeaderView(R.layout.nav_header_main);
+            TextView userEmailNavHeader = navHeader.findViewById(R.id.user_email_nav_header);
+            userEmailNavHeader.setText(mAuth.getCurrentUser().getEmail());
+        }
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
