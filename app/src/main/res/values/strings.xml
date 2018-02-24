@@ -46,4 +46,11 @@
     <string name="copies_edit_hint">Number of Copies</string>
     <string name="edit_book_btn">Edit Book Details</string>
     <string name="no_books_available_hint">NO BOOKS AVAILABLE</string>
+    <string name="scan_books_menu">Scan Books</string>
+    <string name="coming_dues_menu">Coming Dues</string>
+    <string name="all_dues_menu">All Dues</string>
+    <string name="edit_a_book_menu">Edit a Book</string>
+    <string name="add_a_book_menu">Add a Book</string>
+    <string name="menu_title_profile">Profile</string>
+    <string name="sign_out_menu">Sign Out</string>
 </resources>
