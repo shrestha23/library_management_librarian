@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
@@ -21,9 +22,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class AddBookFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    VolumeInfo volumeInfo;
 
     AwesomeValidation awesomeValidation;
 
@@ -34,6 +41,7 @@ public class AddBookFragment extends Fragment {
     TextInputEditText bookCopies;
 
     Button addBookBtn;
+    Button searchBookBtn;
 
     @Nullable
     @Override
@@ -48,6 +56,7 @@ public class AddBookFragment extends Fragment {
         bookDescription = rootView.findViewById(R.id.add_description);
         bookCopies = rootView.findViewById(R.id.add_copies);
         addBookBtn = rootView.findViewById(R.id.add_book_btn);
+        searchBookBtn = rootView.findViewById(R.id.search_isbn_add);
 
 
         return rootView;
@@ -67,6 +76,39 @@ public class AddBookFragment extends Fragment {
         awesomeValidation.addValidation(bookAuthor, RegexTemplate.NOT_EMPTY, "Author should not be empty");
         awesomeValidation.addValidation(bookDescription, RegexTemplate.NOT_EMPTY, "Description should not be empty");
         awesomeValidation.addValidation(bookCopies, RegexTemplate.NOT_EMPTY, "Copies should not be empty, enter at least 1");
+
+        searchBookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Call<BookInfo> bookInfo = BooksAPI.getBooksService().getBookInfo("isbn:" + isbn.getText().toString());
+
+                bookInfo.enqueue(new Callback<BookInfo>() {
+                    @Override
+                    public void onResponse(Call<BookInfo> call, Response<BookInfo> response) {
+                        if (response.isSuccessful()) {
+                            BookInfo info = response.body();
+                            if (info != null) {
+                                if (info.getTotalItems() > 0){
+                                    Item item = info.getItems().get(0);
+                                    volumeInfo = item.getVolumeInfo();
+                                    bookTitle.setText(volumeInfo.getTitle());
+                                    bookAuthor.setText(volumeInfo.getAuthors().get(0));
+                                    bookDescription.setText(volumeInfo.getDescription());
+                                } else {
+                                    Toast.makeText(getActivity(), "Book not found in Google DB", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BookInfo> call, Throwable t) {
+                        Toast.makeText(getActivity(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -76,11 +118,11 @@ public class AddBookFragment extends Fragment {
         addBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(awesomeValidation.validate()) {
+                if (awesomeValidation.validate()) {
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if(!dataSnapshot.hasChild(isbn.getText().toString())) {
+                            if (!dataSnapshot.hasChild(isbn.getText().toString())) {
                                 Book newBook = new Book(
                                         bookTitle.getText().toString(),
                                         bookAuthor.getText().toString(),
@@ -89,8 +131,7 @@ public class AddBookFragment extends Fragment {
                                 );
                                 databaseReference.child(isbn.getText().toString()).setValue(newBook);
                                 //TODO: Add navigation back to show that the data has been entered.
-                            }
-                            else {
+                            } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                 builder.setMessage("Please check ISBN number and enter it again")
                                         .setTitle("ISBN Exists in Database");
@@ -108,5 +149,9 @@ public class AddBookFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void getData(String query) {
+
     }
 }

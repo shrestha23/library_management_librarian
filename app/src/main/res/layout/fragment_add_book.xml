@@ -26,8 +26,15 @@
 
         <Button
             android:layout_width="match_parent"
+            android:id="@+id/scan_isbn_add"
             android:layout_height="wrap_content"
             android:text="@string/scan_isbn_btn" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/search_isbn_add"
+            android:layout_height="wrap_content"
+            android:text="@string/search" />
 
         <View
             android:layout_width="match_parent"
