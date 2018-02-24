@@ -61,9 +61,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:inputType="number"
-                android:hint="@string/search_with_isbn" />
+                android:hint="@string/search_with_isbn"
+                android:inputType="number" />
         </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/barcode_scan"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorSecondary"
+            android:text="@string/scan_isbn_btn"
+            android:textColor="@color/colorLight"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         <android.support.v7.widget.AppCompatButton
@@ -71,11 +83,12 @@
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10pt"
+            android:layout_marginTop="8dp"
             android:background="@color/colorPrimary"
             android:text="@string/search"
             android:textColor="@color/colorLight"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
