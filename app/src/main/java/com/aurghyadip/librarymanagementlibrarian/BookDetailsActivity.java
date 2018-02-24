@@ -1,4 +1,4 @@
-package com.aurghyadip.libararymanagementlibrarian;
+package com.aurghyadip.librarymanagementlibrarian;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

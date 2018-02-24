@@ -1,4 +1,4 @@
-package com.aurghyadip.libararymanagementlibrarian;
+package com.aurghyadip.librarymanagementlibrarian;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.aurghyadip.libararymanagementlibrarian">
+    package="com.aurghyadip.librarymanagementlibrarian">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashScreen"
+            android:name="com.aurghyadip.librarymanagementlibrarian.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/FlatUI">
             <intent-filter>
@@ -23,19 +23,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.aurghyadip.librarymanagementlibrarian.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".BookDetailsActivity"
+            android:name="com.aurghyadip.librarymanagementlibrarian.BookDetailsActivity"
             android:label="@string/title_book_details" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="b6498ddd91f0155ab9597f4ed7da55959bbdc3b0" />
 
-        <activity android:name=".LoginActivity" />
+        <activity android:name="com.aurghyadip.librarymanagementlibrarian.LoginActivity" />
     </application>
 
 </manifest>

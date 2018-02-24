@@ -1,4 +1,4 @@
-package com.aurghyadip.libararymanagementlibrarian;
+package com.aurghyadip.librarymanagementlibrarian;
 
 
 public class Book {
