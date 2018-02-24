@@ -1,6 +1,8 @@
 package com.aurghyadip.libararymanagementlibrarian;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
@@ -13,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.crash.FirebaseCrash;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity
     FragmentTransaction fragmentTransaction;
     ScanFragment scanFragment;
     private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     View navHeader;
 
     @Override
@@ -34,6 +36,15 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser() == null) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    finish();
+                }
+            }
+        };
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -67,6 +78,13 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if the user is signed in or not
+        mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
@@ -122,6 +140,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_add_book:
                 ft.replace(R.id.fragment_container, addBookFragment).addToBackStack(null).commit();
                 break;
+            case R.id.nav_signout:
+                FirebaseAuth.getInstance().signOut();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

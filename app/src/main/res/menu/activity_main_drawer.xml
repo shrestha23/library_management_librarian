@@ -6,31 +6,26 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_scan"
-            android:title="Scan Books" />
+            android:title="@string/scan_books_menu" />
         <item
             android:id="@+id/nav_coming_dues"
-            android:title="Coming Dues" />
+            android:title="@string/coming_dues_menu" />
         <item
             android:id="@+id/nav_all_dues"
-            android:title="All Dues" />
+            android:title="@string/all_dues_menu" />
         <item
             android:id="@+id/nav_edit_book"
-            android:title="Edit a Book" />
+            android:title="@string/edit_a_book_menu" />
         <item
             android:id="@+id/nav_add_book"
-            android:title="Add a Book" />
+            android:title="@string/add_a_book_menu" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/menu_title_profile">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_signout"
+                android:title="@string/sign_out_menu" />
         </menu>
     </item>
 
