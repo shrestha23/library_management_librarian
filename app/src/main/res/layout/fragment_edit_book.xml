@@ -22,8 +22,6 @@
                     android:id="@+id/edit_search_isbn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_info_black_24dp"
                     android:hint="@string/isbn_number_of_the_book_hint" />
             </android.support.design.widget.TextInputLayout>
 
@@ -65,7 +63,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorSecondary" />
+            android:background="@color/colorAccent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,8 +79,6 @@
                     android:id="@+id/edit_book_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_library_books_black_24dp"
                     android:hint="@string/book_name_hint" />
             </android.support.design.widget.TextInputLayout>
 
@@ -95,8 +91,6 @@
                     android:id="@+id/edit_book_author"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_person_black_24dp"
                     android:hint="@string/book_author_hint" />
             </android.support.design.widget.TextInputLayout>
 
@@ -110,8 +104,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_description_black_24dp"
                     android:ems="10"
                     android:hint="@string/description_hint"
                     android:inputType="textMultiLine" />
@@ -127,8 +119,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_content_copy_black_24dp"
                     android:ems="10"
                     android:hint="@string/copies_edit_hint"
                     android:inputType="number" />
