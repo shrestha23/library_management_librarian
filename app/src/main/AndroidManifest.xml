@@ -14,12 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.aurghyadip.librarymanagementlibrarian.SplashScreen"
-            android:screenOrientation="portrait"
-            android:theme="@style/FlatUI">
-
-        </activity>
-        <activity
             android:name="com.aurghyadip.librarymanagementlibrarian.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait"
