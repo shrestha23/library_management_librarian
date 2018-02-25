@@ -1,11 +1,13 @@
 package com.aurghyadip.librarymanagementlibrarian;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +41,7 @@ public class EditBookFragment extends Fragment {
 
     Button searchBtn;
     Button editBookDetailsBtn;
+    Button scanIsbnBtn;
 
     TextInputEditText isbn;
     TextInputEditText bookTitle;
@@ -61,6 +66,7 @@ public class EditBookFragment extends Fragment {
         bookDescription = rootView.findViewById(R.id.edit_book_description);
         bookCopies = rootView.findViewById(R.id.edit_book_copies);
         editBookDetailsBtn = rootView.findViewById(R.id.edit_book_details);
+        scanIsbnBtn = rootView.findViewById(R.id.scan_isbn_edit);
 
         // Validation for ISBN
         awesomeValidationIsbn.addValidation(isbn, "^(97(8|9))?\\d{9}(\\d|X)$", getString(R.string.isbn_error));
@@ -86,35 +92,15 @@ public class EditBookFragment extends Fragment {
             public void onClick(View v) {
                 if (awesomeValidationIsbn.validate()) {
                     isbnNumber = isbn.getText().toString();
-                    // TODO: Add dynamic data loading from Google Books API
-                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.hasChild(isbnNumber)) {
-                                Book book = dataSnapshot.child(isbnNumber).getValue(Book.class);
-
-                                if (book != null) {
-                                    bookTitle.setText(book.getTitle());
-                                    bookAuthor.setText(book.getAuthor());
-                                    bookDescription.setText(book.getDescription());
-                                    bookCopies.setText(String.valueOf(book.getCopies()));
-                                }
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                builder.setMessage("No books found with that ISBN in Database")
-                                        .setTitle("Book Not Found");
-
-                                AlertDialog dialog = builder.create();
-                                dialog.show();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
-                        }
-                    });
+                    fetchBookDataFromDB();
                 }
+            }
+        });
+
+        scanIsbnBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scanFromFragment();
             }
         });
 
@@ -130,9 +116,65 @@ public class EditBookFragment extends Fragment {
                     );
                     databaseReference.child(isbnNumber).setValue(addBook);
                 }
-                // TODO: Destroy the fragment here and go back to previous fragment
+                Toast.makeText(getActivity(), bookTitle.getText().toString() + " edited Successfully", Toast.LENGTH_SHORT).show();
+                Fragment fragment = new ScanFragment();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                fragmentTransaction.commit();
             }
         });
 
+    }
+    private void scanFromFragment() {
+        IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.PRODUCT_CODE_TYPES);
+        integrator.setBeepEnabled(true);
+        integrator.setOrientationLocked(false);
+        integrator.initiateScan();
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        if(result != null) {
+            if(result.getContents() == null) {
+                Toast.makeText(getActivity(), "No ISBN Found", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                isbnNumber = result.getContents();
+                fetchBookDataFromDB();
+            }
+        }
+    }
+
+    private void fetchBookDataFromDB() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(isbnNumber)) {
+                    Book book = dataSnapshot.child(isbnNumber).getValue(Book.class);
+
+                    if (book != null) {
+                        bookTitle.setText(book.getTitle());
+                        bookAuthor.setText(book.getAuthor());
+                        bookDescription.setText(book.getDescription());
+                        bookCopies.setText(String.valueOf(book.getCopies()));
+                    }
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("No books found with that ISBN in Database")
+                            .setTitle("Book Not Found");
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
+            }
+        });
     }
 }
