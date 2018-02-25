@@ -7,7 +7,7 @@
         android:id="@+id/desc_text"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/gradient_primary_accent"
         android:orientation="vertical">
 
         <LinearLayout
@@ -64,32 +64,45 @@
                 android:hint="@string/search_with_isbn"
                 android:inputType="number" />
         </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:id="@+id/barcode_scan"
-            android:layout_width="240dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorSecondary"
-            android:text="@string/scan_isbn_btn"
-            android:textColor="@color/colorLight"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/barcode_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_camera_alt_black_24dp"
+                android:drawablePadding="16dp"
+                android:padding="16dp"
+                android:background="@drawable/accent_background"
+                android:text="@string/scan_isbn_btn"
+                android:textColor="@color/colorLight"
+                android:textStyle="bold" />
 
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/search_books"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/search"
-            android:textColor="@color/colorLight"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/search_books"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:padding="16dp"
+                android:drawableStart="@drawable/ic_search_black_24dp"
+                android:drawablePadding="16dp"
+                android:background="@drawable/primary_background"
+                android:text="@string/search"
+                android:textColor="@color/colorLight"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
 

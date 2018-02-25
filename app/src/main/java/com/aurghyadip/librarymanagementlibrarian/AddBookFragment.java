@@ -163,6 +163,7 @@ public class AddBookFragment extends Fragment {
             }
             else {
                 //TODO: Add the book details to the fields
+                isbn.setText(result.getContents());
                 getBookInfoFromAPI(result.getContents());
             }
         }

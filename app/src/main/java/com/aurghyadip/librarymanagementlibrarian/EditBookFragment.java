@@ -143,6 +143,7 @@ public class EditBookFragment extends Fragment {
             }
             else {
                 isbnNumber = result.getContents();
+                isbn.setText(result.getContents());
                 fetchBookDataFromDB();
             }
         }

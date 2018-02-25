@@ -2,12 +2,12 @@ package com.aurghyadip.librarymanagementlibrarian;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -22,8 +22,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    TextInputEditText emailField;
-    TextInputEditText passwordField;
+    EditText emailField;
+    EditText passwordField;
     AwesomeValidation awesomeValidation;
 
     Button signInBtn;
