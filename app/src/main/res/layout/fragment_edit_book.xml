@@ -22,23 +22,48 @@
                     android:id="@+id/edit_search_isbn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_info_black_24dp"
                     android:hint="@string/isbn_number_of_the_book_hint" />
             </android.support.design.widget.TextInputLayout>
 
-            <Button
-                android:id="@+id/edit_search_btn"
-                style="@style/Base.TextAppearance.AppCompat.Body2"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorSecondary"
-                android:text="@string/search"
-                android:textColor="@color/colorLight"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:paddingTop="8dp">
+
+                <Button
+                    android:id="@+id/scan_isbn_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/accent_background"
+                    android:drawablePadding="16dp"
+                    android:drawableStart="@drawable/ic_camera_alt_white_24dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/scan_isbn_btn"
+                    android:textColor="@color/colorLight"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/edit_search_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/accent_background"
+                    android:drawableStart="@drawable/ic_search_white_24dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/search"
+                    android:textColor="@color/colorLight"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,8 +79,6 @@
                     android:id="@+id/edit_book_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_library_books_black_24dp"
                     android:hint="@string/book_name_hint" />
             </android.support.design.widget.TextInputLayout>
 
@@ -68,8 +91,6 @@
                     android:id="@+id/edit_book_author"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_person_black_24dp"
                     android:hint="@string/book_author_hint" />
             </android.support.design.widget.TextInputLayout>
 
@@ -83,8 +104,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_description_black_24dp"
                     android:ems="10"
                     android:hint="@string/description_hint"
                     android:inputType="textMultiLine" />
@@ -100,8 +119,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_content_copy_black_24dp"
                     android:ems="10"
                     android:hint="@string/copies_edit_hint"
                     android:inputType="number" />
@@ -113,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/primary_background"
                 android:text="@string/edit_book_btn"
                 android:textColor="@color/colorLight"
                 android:textStyle="bold" />

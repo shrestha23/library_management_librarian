@@ -57,9 +57,7 @@ public class ScanFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (awesomeValidation.validate()) {
-                    Intent intent = new Intent(getActivity(), BookDetailsActivity.class);
-                    intent.putExtra("isbn", isbn.getText().toString());
-                    startActivity(intent);
+                    startBookDetailsActivity(isbn.getText().toString());
                 }
             }
         });
@@ -82,8 +80,14 @@ public class ScanFragment extends Fragment {
                 Toast.makeText(getActivity(), "No ISBN Found", Toast.LENGTH_SHORT).show();
             }
             else {
-                isbn.setText(result.getContents());
+                startBookDetailsActivity(result.getContents());
             }
         }
     }
+    private void startBookDetailsActivity(String isbnNumber) {
+        Intent intent = new Intent(getActivity(), BookDetailsActivity.class);
+        intent.putExtra("isbn", isbnNumber);
+        startActivity(intent);
+    }
+
 }
