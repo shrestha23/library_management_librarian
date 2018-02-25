@@ -63,7 +63,7 @@ public class BookDetailsActivity extends AppCompatActivity {
                         titleView.setText(book.getTitle());
                         authorView.setText(book.getAuthor());
                         descriptionView.setText(book.getDescription());
-                        copiesView.setText(book.getCopies());
+                        copiesView.setText(String.valueOf(book.getCopies()));
                     }
                 } else {
                     LinearLayout hasBookDetails = findViewById(R.id.has_book_details_layout);

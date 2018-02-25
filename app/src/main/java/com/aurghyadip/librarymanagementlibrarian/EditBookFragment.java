@@ -108,7 +108,7 @@ public class EditBookFragment extends Fragment {
                             bookTitle.getText().toString(),
                             bookAuthor.getText().toString(),
                             bookDescription.getText().toString(),
-                            bookCopies.getText().toString()
+                            Integer.valueOf(bookCopies.getText().toString())
                     );
                     databaseReference.child(isbnNumber).setValue(addBook);
                 }

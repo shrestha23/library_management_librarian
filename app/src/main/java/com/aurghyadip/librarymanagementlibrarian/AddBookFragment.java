@@ -116,7 +116,7 @@ public class AddBookFragment extends Fragment {
                                         bookTitle.getText().toString(),
                                         bookAuthor.getText().toString(),
                                         bookDescription.getText().toString(),
-                                        bookCopies.getText().toString()
+                                        Integer.valueOf(bookCopies.getText().toString())
                                 );
                                 databaseReference.child(isbn.getText().toString()).setValue(newBook);
                                 //TODO: Add navigation back to show that the data has been entered.
