@@ -62,6 +62,16 @@ public class MainActivity extends AppCompatActivity
             userEmailNavHeader.setText(mAuth.getCurrentUser().getEmail());
         }
 
+        /* For Development Builds only */
+        TextView devWatermark = navHeader.findViewById(R.id.dev_watermark);
+
+        int versionCode = BuildConfig.VERSION_CODE;
+        String versionName = BuildConfig.VERSION_NAME;
+
+        String devText = " " + String.valueOf(versionCode) + " " + versionName;
+        devWatermark.append(devText);
+        /* --------------------------- */
+
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
