@@ -21,11 +21,13 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+
     <LinearLayout
         android:id="@+id/has_book_details_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,52 +85,47 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingTop="16dp">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/rent_book_btn"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_margin="8dp"
+                android:background="@drawable/accent_background"
+                android:text="@string/rent_book_btn_text"
+                android:textColor="@color/colorLight"
+                android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/rent_book_btn"
-                    android:layout_width="160dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rent_book_btn_text"
-                    android:textColor="@color/colorLight"
-                    android:textStyle="bold"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_margin="8dp" />
-
-                <Button
-                    android:id="@+id/deposit_book_btn"
-                    android:layout_width="160dp"
-                    android:background="@color/colorAccent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorLight"
-                    android:textStyle="bold"
-                    android:text="@string/deposit_book_btn_text"
-                    android:layout_margin="8dp" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/deposit_book_btn"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/primary_background"
+                android:text="@string/deposit_book_btn_text"
+                android:textColor="@color/colorLight"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/does_not_have_book_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="invisible">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="32sp"
-            android:textStyle="bold"
             android:gravity="center"
+            android:text="@string/no_books_available_hint"
             android:textAlignment="center"
-            android:text="@string/no_books_available_hint"/>
+            android:textSize="32sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>
