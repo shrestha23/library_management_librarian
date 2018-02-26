@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LibararyManagementLibarian.iml" filepath="$PROJECT_DIR$/LibararyManagementLibarian.iml" />
+      <module fileurl="file://C:\Users\User\Documents\GitHub\library_management_librarian\LibararyManagementLibarian.iml" filepath="C:\Users\User\Documents\GitHub\library_management_librarian\LibararyManagementLibarian.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\User\Documents\GitHub\library_management_librarian\app\app.iml" filepath="C:\Users\User\Documents\GitHub\library_management_librarian\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_management_librarian.iml" filepath="$PROJECT_DIR$/library_management_librarian.iml" />
     </modules>
   </component>
 </project>

@@ -62,6 +62,16 @@ public class MainActivity extends AppCompatActivity
             userEmailNavHeader.setText(mAuth.getCurrentUser().getEmail());
         }
 
+        /* For Development Builds only */
+        TextView devWatermark = navHeader.findViewById(R.id.dev_watermark);
+
+        int versionCode = BuildConfig.VERSION_CODE;
+        String versionName = BuildConfig.VERSION_NAME;
+
+        String devText = " " + String.valueOf(versionCode) + " " + versionName;
+        devWatermark.append(devText);
+        /* --------------------------- */
+
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -111,7 +121,7 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -119,20 +129,12 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction ft = fm.beginTransaction();
 
         ScanFragment sf = new ScanFragment();
-        ComingDuesFragment comingDuesFragment = new ComingDuesFragment();
-        AllDuesFragment allDuesFragment = new AllDuesFragment();
         EditBookFragment editBookFragment = new EditBookFragment();
         AddBookFragment addBookFragment = new AddBookFragment();
 
         switch (id) {
             case R.id.nav_scan:
                 ft.replace(R.id.fragment_container, sf).addToBackStack(null).commit();
-                break;
-            case R.id.nav_coming_dues:
-                ft.replace(R.id.fragment_container, comingDuesFragment).addToBackStack(null).commit();
-                break;
-            case R.id.nav_all_dues:
-                ft.replace(R.id.fragment_container, allDuesFragment).addToBackStack(null).commit();
                 break;
             case R.id.nav_edit_book:
                 ft.replace(R.id.fragment_container, editBookFragment).addToBackStack(null).commit();
@@ -142,6 +144,10 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_signout:
                 FirebaseAuth.getInstance().signOut();
+                break;
+            case R.id.nav_about_app:
+                startActivity(new Intent(MainActivity.this, AppDetailsActivity.class));
+                break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
