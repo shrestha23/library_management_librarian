@@ -38,7 +38,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RentActivity" />
-        <activity android:name=".DepositActivity"></activity>
+        <activity android:name=".DepositActivity" />
+        <activity android:name=".AppDetailsActivity"></activity>
     </application>
 
 </manifest>
